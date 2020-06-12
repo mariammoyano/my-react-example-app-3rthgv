@@ -2,25 +2,25 @@ import App from './components/App';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { applyMiddleware, createStore } from 'redux';
-import { promiseMiddleware } from './middleware';
+import store from './store';
+// Updated to HashRouter for compatibility reasons
+import { HashRouter, Route, Link} from 'react-router-dom';
+// import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-const defaultState = {
-  appName: 'conduit',
-  articles: null
-};
-const reducer = function(state = defaultState, action) {
-  switch (action.type) {
-    case 'HOME_PAGE_LOADED':
-      return { ...state, articles: action.payload.articles };
-    default:
-      return state;
-  }
-};
-const store = createStore(reducer, applyMiddleware(promiseMiddleware));
+import Home from './components/Home';
+import Login from './components/Login';
+
 
 ReactDOM.render((
   <Provider store={store}>
-    <App />
+    <HashRouter>
+      <Route path="/" component={App} />
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/login" component={Login} />
+      {/* TODO review if div needed. Seems to have no effect but double check once app is complete */}
+      {/* <div>
+        route elems here...
+      </div> */}
+    </HashRouter>
   </Provider>
 ), document.getElementById('root'));
