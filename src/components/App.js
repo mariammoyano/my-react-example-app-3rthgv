@@ -18,8 +18,9 @@ class App extends React.Component {
   }
 }
 
-App.contextTypes = {
-  router: PropTypes.object.isRequired
-}
+// NOTE: this was giving a warning so I commented it, might not be necessary with hashrouter
+// App.contextTypes = {
+//   router: PropTypes.object.isRequired
+// }
 
 export default connect(mapStateToProps, () => ({}))(App);
