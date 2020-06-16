@@ -5,6 +5,7 @@ class Header extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-light">
+        <h1>{this.props.currentUser ? 'YOU ARE NOW LOGGED IN' : 'you are logged out'} </h1>
         <div className="container">
           <Link to="/" className="navbar-brand">
             {this.props.appName.toLowerCase()}
