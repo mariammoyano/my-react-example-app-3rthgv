@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 const LoggedOutView = props => {
   if (!props.currentUser) {
@@ -19,15 +19,13 @@ const LoggedOutView = props => {
         </li>
         
         <li className="nav-item">
-          {/* TODO link to register */}
-          <a className="nav-link">
+          <Link to="register" className="nav-link">
             Sign up
-          </a>
+          </Link>
         </li>
 
       </ul>
-    );
-    
+    );    
   }
   return null;
 };
