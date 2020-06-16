@@ -49,10 +49,9 @@ const LoggedInView = props => {
         </li>
         
         <li className="nav-item">
-          {/* TODO link to settings */}
-          <a className="nav-link">
+          <Link to="settings" className="nav-link">
             <i className="ion-gear-a"></i>&nbsp;Settings
-          </a>
+          </Link>
         </li>
 
         <li className="nav-item">
