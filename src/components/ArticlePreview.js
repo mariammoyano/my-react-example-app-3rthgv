@@ -22,7 +22,7 @@ const ArticlePreview = props => {
         <div className="pull-xs-right">
           <button
               className="btn btn-sm btn-outline-primary">
-            <i className="ino-heart"></i> {article.favoritesCount}
+            <i className="ion-heart"></i> {article.favoritesCount}
           </button>
         </div>
       </div>
