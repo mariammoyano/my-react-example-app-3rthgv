@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import ListErrors from './ListErrors';
+import React from 'react';
 import agent from '../agent'
+import { connect } from 'react-redux';
 
 class SettingsForm extends React.Component {
   constructor() {
@@ -127,7 +127,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onClickLogout: () => dispatch({ type: 'LOGOUT' }),
   onSubmitForm: user =>
-    dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) })
+    dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) }),
+  onUnload: () => dispatch({ type: 'SETTINGS_PAGE_UNLOADED' })
 });
 
 class Settings extends React.Component {
