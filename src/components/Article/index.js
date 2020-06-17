@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import agent from '../../agent';
 import marked from 'marked';
+import ArticleMeta from './ArticleMeta';
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -42,7 +43,10 @@ const mapDispatchToProps = dispatch => ({
           <div className="container">
 
             <h1>{this.props.article.title}</h1>
-            {/* TODO article meta component here */}
+            <ArticleMeta
+              article={this.props.article}
+              canModify={canModify} />
+              
           </div>
         </div>
 
