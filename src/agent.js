@@ -41,8 +41,14 @@ const Auth = {
     requests.put('/user', { user })
 };
 
+const Comments = {
+  forArticle: slug => 
+    requests.get(`/articles/${slug}/comments`)
+};
+
 export default {
   Articles,
   Auth,
+  Comments,
   setToken: _token => { token = _token; }
 };

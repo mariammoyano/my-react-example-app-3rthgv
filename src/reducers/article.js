@@ -4,8 +4,7 @@ export default (state = {}, action) => {
       return {
         ...state,
         article: action.payload[0].article,
-        // TODO payload comments
-        comments: []
+        comments: action.payload[1].comments
       };
     case 'ARTICLE_PAGE_UNLOADED':
       return {};

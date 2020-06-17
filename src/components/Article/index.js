@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import agent from '../../agent';
 import marked from 'marked';
 import ArticleMeta from './ArticleMeta';
+import CommentContainer from './CommentContainer';
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -20,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
   componentWillMount() {
     const articleId = this.props.match.params.id;    
     this.props.onLoad(Promise.all([
-      agent.Articles.get(articleId)
+      agent.Articles.get(articleId),
+      agent.Comments.forArticle(articleId)
     ]));
   }
 
@@ -32,7 +34,6 @@ const mapDispatchToProps = dispatch => ({
     if (!this.props.article) {
       return null;
     }
-
     const markup = { __html: marked(this.props.article.body) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
@@ -46,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
             <ArticleMeta
               article={this.props.article}
               canModify={canModify} />
-              
+
           </div>
         </div>
 
@@ -78,7 +79,11 @@ const mapDispatchToProps = dispatch => ({
             </div>
 
             <div className="row">
-              {/* TODO comment container here */}
+              <CommentContainer
+                  comments={this.props.comments || []}
+                  errors={this.props.commentErrors}
+                  slug={this.props.match.params.id}
+                  currentUser={this.props.currentUser} />
             </div>
         </div>
       </div>
