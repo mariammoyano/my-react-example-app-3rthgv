@@ -1,14 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import CommentInput from './CommentInput';
 import CommentList from './CommentList';
+import { Link } from 'react-router-dom';
+import React from 'react';
+import ListErrors from '../ListErrors';
 
 const CommentContainer = props => { 
   if (props.currentUser) {
     return (
       <div className="col-xs-12 col-md-8 offset-md-2">
         <div>
-          <list-errors errors={props.errors}></list-errors>
-          {/* TODO add new comment here */}
+          <ListErrors errors={props.errors}></ListErrors>
+          <CommentInput slug={props.slug} currentUser={props.currentUser} />
         </div>
 
         <CommentList
