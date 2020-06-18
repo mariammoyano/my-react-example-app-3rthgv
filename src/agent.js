@@ -28,6 +28,8 @@ const requests = {
 const Articles = {
   all: page =>
     requests.get(`/articles?limit=10`),
+  byAuthor: (author, page) =>
+    requests.get(`/articles?author=${encodeURIComponent(author)}&limit=5`),
   get: slug =>
     requests.get(`/articles/${slug}`)
 };
@@ -52,9 +54,14 @@ const Comments = {
     requests.get(`/articles/${slug}/comments`)
 };
 
+const Profile = {
+  get: username =>
+    requests.get(`/profiles/${username}`)
+};
 export default {
   Articles,
   Auth,
   Comments,
+  Profile,
   setToken: _token => { token = _token; }
 };
