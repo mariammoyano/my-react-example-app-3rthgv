@@ -15,13 +15,14 @@ import store from './store';
 
 ReactDOM.render((
   <Provider store={store}>
+    {/* TODO review exact usage */}
     <HashRouter>
       <Route path="/" component={App} />
       <Route exact path="/" component={Home}/>
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/settings" component={Settings} />
-      <Route path={"/article/:id"} component={Article} />
+      <Route exact path={"/article/:id"} component={Article} />
       {/* TODO review if div needed. Seems to have no effect but double check once app is complete */}
       {/* <div>
         route elems here...
