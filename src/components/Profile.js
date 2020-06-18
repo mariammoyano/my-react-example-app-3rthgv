@@ -16,6 +16,35 @@ const EditProfileSettings = props => {
   }
   return null;
 };
+
+const FollowUserButton = props => {
+  if (props.isUser) {
+    return null;
+  }
+
+  let classes = 'btn btn-sm action-btn';
+  classes += props.user.following ? ' btn-secondary' : ' btn-outline-secondary';
+
+  const handleClick = ev => {
+    ev.preventDefault();
+    if (props.user.following) {
+      props.unfollow(props.user.username)
+    } else {
+      props.follow(props.user.username)
+    }
+  };
+
+  return (
+    <button
+      className={classes}
+      onClick={handleClick}>
+      <i className="ion-plus-round"></i>
+      &nbsp;
+      {props.user.following ? 'Unfollow' : 'Follow'} {props.user.username}
+    </button>
+  );
+};
+
 const mapStateToProps = state => ({
   ...state.articleList,
   currentUser: state.common.currentUser,
@@ -23,7 +52,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onFollow: username => dispatch({
+    type: 'FOLLOW_USER',
+    payload: agent.Profile.follow(username)
+  }),
   onLoad: payload => dispatch({ type: 'PROFILE_PAGE_LOADED', payload }),
+  onUnfollow: username => dispatch({
+    type: 'UNFOLLOW_USER',
+    payload: agent.Profile.unfollow(username)
+  }),
   onUnload: () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' })  
 });
 
@@ -83,7 +120,12 @@ class Profile extends React.Component {
                 <p>{profile.bio}</p>
 
                 <EditProfileSettings isUser={isUser} />
-                {/* TODO follow button */}
+                <FollowUserButton 
+                  isUser={isUser}
+                  user={profile}
+                  follow={this.props.onFollow}
+                  unfollow={this.props.onUnfollow}
+                />
 
               </div>
             </div>
