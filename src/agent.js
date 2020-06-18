@@ -28,6 +28,10 @@ const requests = {
 const Articles = {
   all: page =>
     requests.get(`/articles?limit=10`),
+  byAuthor: (author, page) =>
+    requests.get(`/articles?author=${encodeURIComponent(author)}&limit=5`),
+  favoritedBy: (author, page) =>
+    requests.get(`/articles?favorited=${encodeURIComponent(author)}&limit=5`),
   get: slug =>
     requests.get(`/articles/${slug}`)
 };
@@ -52,9 +56,19 @@ const Comments = {
     requests.get(`/articles/${slug}/comments`)
 };
 
+const Profile = {
+  follow: username =>
+    requests.post(`/profiles/${username}/follow`),
+  get: username =>
+    requests.get(`/profiles/${username}`),
+  unfollow: username =>
+    requests.del(`/profiles/${username}/follow`)
+};
+
 export default {
   Articles,
   Auth,
   Comments,
+  Profile,
   setToken: _token => { token = _token; }
 };
