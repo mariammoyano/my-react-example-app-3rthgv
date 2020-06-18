@@ -6,6 +6,7 @@ import { HashRouter, Route, Link} from 'react-router-dom';
 // import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './components/App';
+import Article from './components/Article';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -20,6 +21,7 @@ ReactDOM.render((
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/settings" component={Settings} />
+      <Route path={"/article/:id"} component={Article} />
       {/* TODO review if div needed. Seems to have no effect but double check once app is complete */}
       {/* <div>
         route elems here...
