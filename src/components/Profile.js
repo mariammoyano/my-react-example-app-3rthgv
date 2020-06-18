@@ -1,8 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import agent from '../agent';
 import ArticleList from './ArticleList';
+import React from 'react';
+import agent from '../agent';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+const EditProfileSettings = props => {
+  if (props.isUser) {
+    return (
+      <Link
+        to="settings"
+        className="btn btn-sm btn-outline-secondary action-btn">
+        <i className="ion-gear-a"></i> Edit Profile Settings
+      </Link>
+    );
+  }
+  return null;
+};
 const mapStateToProps = state => ({
   ...state.articleList,
   currentUser: state.common.currentUser,
@@ -47,7 +60,7 @@ class Profile extends React.Component {
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
 
-                {/* TODO edit profile */}
+                <EditProfileSettings isUser={isUser} />
                 {/* TODO follow button */}
 
               </div>
