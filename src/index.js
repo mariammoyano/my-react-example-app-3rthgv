@@ -10,6 +10,7 @@ import Article from './components/Article';
 import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import ProfileFavorites from './components/ProfileFavorites';
 import Register from './components/Register';
 import Settings from './components/Settings';
 import store from './store';
@@ -25,6 +26,7 @@ ReactDOM.render((
       <Route exact path="/settings" component={Settings} />
       <Route exact path={"/article/:id"} component={Article} />
       <Route exact path="/@:username" component={Profile} />
+      <Route exact path="/@:username/favorites" component={ProfileFavorites} />
       {/* TODO review if div needed. Seems to have no effect but double check once app is complete */}
       {/* <div>
         route elems here...

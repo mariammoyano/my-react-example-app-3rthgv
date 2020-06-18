@@ -39,6 +39,28 @@ class Profile extends React.Component {
     this.props.onUnload();
   }
 
+  renderTabs() {
+    return (
+      <ul className="nav nav-pills outline-active">
+        <li className="nav-item">
+          <Link
+            className="nav-link active"
+            to={`/@${this.props.profile.username}`}>
+            My Articles
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link
+            className="nav-link"
+            to={`/@${this.props.profile.username}/favorites`}>
+            Favorited Articles
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     const profile = this.props.profile;
     if (!profile) {
@@ -74,7 +96,7 @@ class Profile extends React.Component {
             <div className="col-xs-12 col-md-10 offset-md-1">
 
               <div className="articles-toggle">
-                {/* TODO tabs */}
+                {this.renderTabs()}
               </div>
 
             <ArticleList
