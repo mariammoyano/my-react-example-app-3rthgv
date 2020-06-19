@@ -25,13 +25,14 @@ const requests = {
     superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
 };
 
+const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`
 const Articles = {
   all: page =>
-    requests.get(`/articles?limit=10`),
+    requests.get(`/articles?${limit(10, page)}`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encodeURIComponent(author)}&limit=5`),
   favoritedBy: (author, page) =>
-    requests.get(`/articles?favorited=${encodeURIComponent(author)}&limit=5`),
+    requests.get(`/articles?favorited=${encodeURIComponent(author)}&${limit(10, page)}`),
   get: slug =>
     requests.get(`/articles/${slug}`)
 };
