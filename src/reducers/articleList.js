@@ -5,10 +5,20 @@ export default (state = {}, action) => {
         ...state,
         articles: action.payload.articles,
         articlesCount: action.payload.articlesCount,
+        tab: action.tab,
         currentPage: 0
       };
     case 'HOME_PAGE_UNLOADED':
       return {};
+    case 'CHANGE_TAB':
+      return {
+        ...state,
+        articles: action.payload.articles,
+        articlesCount: action.payload.articlesCount,
+        tab: action.tab,
+        tag: null,
+        currentPage: 0
+      };
     case 'SET_PAGE':
       return {
         ...state,
