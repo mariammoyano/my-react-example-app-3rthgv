@@ -32,6 +32,8 @@ const Articles = {
     requests.get(`/articles?${limit(10, page)}`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(10, page)}`),
+  byTag: (tag, page) =>
+    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
   favoritedBy: (author, page) =>
     requests.get(`/articles?favorited=${encode(author)}&${limit(10, page)}`),
     feed: page =>
@@ -69,10 +71,15 @@ const Profile = {
     requests.del(`/profiles/${username}/follow`)
 };
 
+const Tags = {
+  getAll: () => requests.get('/tags')
+};
+
 export default {
   Articles,
   Auth,
   Comments,
   Profile,
+  Tags,
   setToken: _token => { token = _token; }
 };
