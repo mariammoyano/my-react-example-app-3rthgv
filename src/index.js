@@ -7,6 +7,7 @@ import { HashRouter, Route, Link} from 'react-router-dom';
 
 import App from './components/App';
 import Article from './components/Article';
+import Editor from './components/Editor';
 import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
@@ -27,6 +28,8 @@ ReactDOM.render((
       <Route exact path={"/article/:id"} component={Article} />
       <Route exact path="/@:username" component={Profile} />
       <Route exact path="/@:username/favorites" component={ProfileFavorites} />
+      <Route exact path="/editor" component={Editor} />
+      <Route exact path="/editor/:slug" component={Editor} />
       {/* TODO review if div needed. Seems to have no effect but double check once app is complete */}
       {/* <div>
         route elems here...
