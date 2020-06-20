@@ -1,16 +1,17 @@
-import React from 'react'
+import ArticleActions from './ArticleActions';
 import { Link } from 'react-router-dom';
+import React from 'react'
 
 const ArticleMeta = props => {
   const article = props.article;
   return (
     <div className="article-meta">
-      <Link to={`@${article.author.username}`}>
+      <Link to={`/@${article.author.username}`}>
         <img src={article.author.image} />
       </Link>
 
       <div className="info">
-        <Link to={`@${article.author.username}`} className="author">
+        <Link to={`/@${article.author.username}`} className="author">
           {article.author.username}
         </Link>
         <span className="date">
@@ -18,7 +19,7 @@ const ArticleMeta = props => {
         </span>
       </div>
 
-      {/* TODO article actions */}
+      <ArticleActions canModify={props.canModify} article={article} />
     </div>
   );
 };
