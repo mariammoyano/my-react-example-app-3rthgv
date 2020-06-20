@@ -1,5 +1,6 @@
-import React from 'react'
+import ArticleActions from './ArticleActions';
 import { Link } from 'react-router-dom';
+import React from 'react'
 
 const ArticleMeta = props => {
   const article = props.article;
@@ -18,7 +19,7 @@ const ArticleMeta = props => {
         </span>
       </div>
 
-      {/* TODO article actions */}
+      <ArticleActions canModify={props.canModify} article={article} />
     </div>
   );
 };
