@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import agent from '../agent';
+import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
   favorite: slug => dispatch({
-    type: 'ARTICLE_FAVORITED',
+    type: ARTICLE_FAVORITED,
     payload: agent.Articles.favorite(slug)
   }),
   unfavorite: slug => dispatch({
-    type: 'ARTICLE_UNFAVORITED',
+    type: ARTICLE_UNFAVORITED,
     payload: agent.Articles.unfavorite(slug)
   })
 });
