@@ -1,8 +1,8 @@
 import ArticleList from './ArticleList';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
   FOLLOW_USER,
   UNFOLLOW_USER,
