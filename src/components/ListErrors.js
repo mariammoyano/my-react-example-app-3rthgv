@@ -16,7 +16,7 @@ class ListErrors extends React.Component {
             })
           }
         </ul>
-      );      
+      );
     }
     return null;
   }

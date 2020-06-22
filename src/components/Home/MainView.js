@@ -19,7 +19,7 @@ const YourFeedTab = props => {
           Your Feed
         </a>
       </li>
-    );    
+    );
   }
   return null;
 };

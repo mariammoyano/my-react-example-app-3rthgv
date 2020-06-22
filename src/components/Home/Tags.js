@@ -8,24 +8,24 @@ const Tags = props => {
       <div className="tag-list">
         {
           tags.map(tag => {
-          const handleClick = ev => {
-            ev.preventDefault();
-            props.onClickTag(tag, agent.Articles.byTag(tag));
-          };
+            const handleClick = ev => {
+              ev.preventDefault();
+              props.onClickTag(tag, agent.Articles.byTag(tag));
+            };
 
-          return (
-            <a
-              href=""
-              className="tag-default tag-pill"
-              key={tag}
-              onClick={handleClick}>
-              {tag}
-            </a>
-          );
+            return (
+              <a
+                href=""
+                className="tag-default tag-pill"
+                key={tag}
+                onClick={handleClick}>
+                {tag}
+              </a>
+            );
           })
         }
       </div>
-    );    
+    );
   }
   return (
     <div>Loading Tags...</div>

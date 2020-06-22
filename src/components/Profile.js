@@ -15,7 +15,7 @@ const EditProfileSettings = props => {
   if (props.isUser) {
     return (
       <Link
-        to="settings"
+        to="/settings"
         className="btn btn-sm btn-outline-secondary action-btn">
         <i className="ion-gear-a"></i> Edit Profile Settings
       </Link>
@@ -55,7 +55,7 @@ const FollowUserButton = props => {
 const mapStateToProps = state => ({
   ...state.articleList,
   currentUser: state.common.currentUser,
-  profile: state.profile  
+  profile: state.profile
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,11 +69,11 @@ const mapDispatchToProps = dispatch => ({
     type: UNFOLLOW_USER,
     payload: agent.Profile.unfollow(username)
   }),
-  onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED })  
+  onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED })
 });
 
 class Profile extends React.Component {
-  componentWillMount() {    
+  componentWillMount() {
     this.props.onLoad(Promise.all([
       agent.Profile.get(this.props.match.params.username),
       agent.Articles.byAuthor(this.props.match.params.username)
@@ -135,12 +135,12 @@ class Profile extends React.Component {
                 <p>{profile.bio}</p>
 
                 <EditProfileSettings isUser={isUser} />
-                <FollowUserButton 
+                <FollowUserButton
                   isUser={isUser}
                   user={profile}
                   follow={this.props.onFollow}
                   unfollow={this.props.onUnfollow}
-                />
+                  />
 
               </div>
             </div>
@@ -156,11 +156,11 @@ class Profile extends React.Component {
                 {this.renderTabs()}
               </div>
 
-            <ArticleList
-              articles={this.props.articles}
-              articlesCount={this.props.articlesCount}
-              currentPage={this.props.currentPage}
-              onSetPage={onSetPage} />
+              <ArticleList
+                articles={this.props.articles}
+                articlesCount={this.props.articlesCount}
+                currentPage={this.props.currentPage}
+                onSetPage={onSetPage} />
             </div>
 
           </div>

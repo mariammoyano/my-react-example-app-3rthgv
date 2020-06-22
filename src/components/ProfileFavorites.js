@@ -67,7 +67,7 @@ class ProfileFavorites extends Profile {
         </li>
       </ul>
     );
-  }  
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileFavorites);

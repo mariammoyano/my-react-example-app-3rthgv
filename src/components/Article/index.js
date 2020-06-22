@@ -8,13 +8,13 @@ import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../../constants/acti
 
 const mapStateToProps = state => ({
   ...state.article,
-  currentUser: state.common.currentUser 
+  currentUser: state.common.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: payload => 
+  onLoad: payload =>
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
-  onUnload: () => 
+  onUnload: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED })
 });
 
@@ -59,33 +59,33 @@ const mapDispatchToProps = dispatch => ({
 
               <div dangerouslySetInnerHTML={markup}></div>
 
-                <ul className="tag-list">
-                  {
-                    this.props.article.tagList.map(tag => (
+              <ul className="tag-list">
+                {
+                  this.props.article.tagList.map(tag => (
                       <li
-                          className="tag-default tag-pill tag-outline"
-                          key={tag}>
+                        className="tag-default tag-pill tag-outline"
+                        key={tag}>
                         {tag}
                       </li>
                     ))
-                  }
-                </ul>
+                }
+              </ul>
 
-              </div>
             </div>
+          </div>
 
-            <hr />
+          <hr />
 
-            <div className="article-actions">
-            </div>
+          <div className="article-actions">
+          </div>
 
-            <div className="row">
-              <CommentContainer
-                  comments={this.props.comments || []}
-                  errors={this.props.commentErrors}
-                  slug={this.props.match.params.id}
-                  currentUser={this.props.currentUser} />
-            </div>
+          <div className="row">
+            <CommentContainer
+              comments={this.props.comments || []}
+              errors={this.props.commentErrors}
+              slug={this.props.match.params.id}
+              currentUser={this.props.currentUser} />
+          </div>
         </div>
       </div>
     );

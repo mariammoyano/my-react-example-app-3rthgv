@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   onLoad: (tab, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, payload }),
   onUnload: () =>
-    dispatch({ type: HOME_PAGE_UNLOADED })
+    dispatch({  type: HOME_PAGE_UNLOADED })
 });
 
 class Home extends React.Component {
@@ -55,6 +55,7 @@ class Home extends React.Component {
               <div className="sidebar">
 
                 <p>Popular Tags</p>
+
                 <Tags
                   tags={this.props.tags}
                   onClickTag={this.props.onClickTag} />

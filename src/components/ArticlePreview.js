@@ -38,7 +38,7 @@ const ArticlePreview = props => {
         </Link>
 
         <div className="info">
-          <Link className="author"  to={`/@${article.author.username}`}>
+          <Link className="author" to={`/@${article.author.username}`}>
             {article.author.username}
           </Link>
           <span className="date">
@@ -52,7 +52,7 @@ const ArticlePreview = props => {
           </button>
         </div>
       </div>
-      
+
       <Link to={`/article/${article.slug}`} className="preview-link">
         <h1>{article.title}</h1>
         <p>{article.description}</p>
@@ -69,6 +69,6 @@ const ArticlePreview = props => {
       </Link>
     </div>
   );
-};
+}
 
 export default connect(() => ({}), mapDispatchToProps)(ArticlePreview);

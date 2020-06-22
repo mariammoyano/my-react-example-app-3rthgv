@@ -41,7 +41,7 @@ class Register extends React.Component {
   componentWillUnmount() {
     this.props.onUnload();
   }
-  
+
   render() {
     const email = this.props.email;
     const password = this.props.password;
@@ -76,26 +76,26 @@ class Register extends React.Component {
 
                   <fieldset className="form-group">
                     <input
-                        className="form-control form-control-lg"
-                        type="email"
-                        placeholder="Email"
-                        value={this.props.email}
-                        onChange={this.changeEmail} />
+                      className="form-control form-control-lg"
+                      type="email"
+                      placeholder="Email"
+                      value={this.props.email}
+                      onChange={this.changeEmail} />
                   </fieldset>
 
                   <fieldset className="form-group">
                     <input
-                        className="form-control form-control-lg"
-                        type="password"
-                        placeholder="Password"
-                        value={this.props.password}
-                        onChange={this.changePassword} />
+                      className="form-control form-control-lg"
+                      type="password"
+                      placeholder="Password"
+                      value={this.props.password}
+                      onChange={this.changePassword} />
                   </fieldset>
 
                   <button
-                      className="btn btn-lg btn-primary pull-xs-right"
-                      type="submit"
-                      disabled={this.props.inProgress}>
+                    className="btn btn-lg btn-primary pull-xs-right"
+                    type="submit"
+                    disabled={this.props.inProgress}>
                     Sign up
                   </button>
 

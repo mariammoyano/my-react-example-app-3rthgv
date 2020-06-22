@@ -36,38 +36,38 @@ class Editor extends React.Component {
 
     const updateFieldEvent =
       key => ev => this.props.onUpdateField(key, ev.target.value);
-      this.changeTitle = updateFieldEvent('title');
-      this.changeDescription = updateFieldEvent('description');
-      this.changeBody = updateFieldEvent('body');
-      this.changeTagInput = updateFieldEvent('tagInput');
+    this.changeTitle = updateFieldEvent('title');
+    this.changeDescription = updateFieldEvent('description');
+    this.changeBody = updateFieldEvent('body');
+    this.changeTagInput = updateFieldEvent('tagInput');
 
-      this.watchForEnter = ev => {
-        if (ev.keyCode === 13) {
-          ev.preventDefault();
-          this.props.onAddTag();
-        }
-      };
-
-      this.removeTagHandler = tag => () => {
-        this.props.onRemoveTag(tag);
-      };
-
-      this.submitForm = ev => {
+    this.watchForEnter = ev => {
+      if (ev.keyCode === 13) {
         ev.preventDefault();
-        const article = {
-          title: this.props.title,
-          description: this.props.description,
-          body: this.props.body,
-          tagList: this.props.tagList
-        };
+        this.props.onAddTag();
+      }
+    };
 
-        const slug = { slug: this.props.articleSlug };
-        const promise = this.props.articleSlug ?
-          agent.Articles.update(Object.assign(article, slug)) :
-          agent.Articles.create(article);
-        
-        this.props.onSubmit(promise);
+    this.removeTagHandler = tag => () => {
+      this.props.onRemoveTag(tag);
+    };
+
+    this.submitForm = ev => {
+      ev.preventDefault();
+      const article = {
+        title: this.props.title,
+        description: this.props.description,
+        body: this.props.body,
+        tagList: this.props.tagList
       };
+
+      const slug = { slug: this.props.articleSlug };
+      const promise = this.props.articleSlug ?
+        agent.Articles.update(Object.assign(article, slug)) :
+        agent.Articles.create(article);
+
+      this.props.onSubmit(promise);
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -78,7 +78,7 @@ class Editor extends React.Component {
         this.props.onUnload();
         return this.props.onLoad(agent.Articles.get(slug));
       }
-      this.props.onLoad(null);      
+      this.props.onLoad(null);
     }
   }
 
@@ -102,7 +102,7 @@ class Editor extends React.Component {
             <div className="col-md-10 offset-md-1 col-xs-12">
 
               <ListErrors errors={this.props.errors}></ListErrors>
-              
+
               <form>
                 <fieldset>
 
@@ -142,7 +142,7 @@ class Editor extends React.Component {
                       value={this.props.tagInput}
                       onChange={this.changeTagInput}
                       onKeyUp={this.watchForEnter} />
-                    
+
                     <div className="tag-list">
                       {
                         (this.props.tagList || []).map(tag => {
@@ -169,8 +169,8 @@ class Editor extends React.Component {
 
                 </fieldset>
               </form>
-              
-            </div>            
+
+            </div>
           </div>
         </div>
       </div>

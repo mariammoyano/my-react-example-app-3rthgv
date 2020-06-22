@@ -37,7 +37,7 @@ class SettingsForm extends React.Component {
       this.props.onSubmitForm(user);
     };
   }
-  
+
   componentWillMount() {
     if (this.props.currentUser) {
       Object.assign(this.state, {
@@ -45,7 +45,7 @@ class SettingsForm extends React.Component {
         username: this.props.currentUser.username,
         bio: this.props.currentUser.bio,
         email: this.props.currentUser.email
-      });      
+      });
     }
   }
 
@@ -67,7 +67,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control"            
+              className="form-control"
               type="text"
               placeholder="URL of profile picture"
               value={this.state.image}
@@ -76,7 +76,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="text"
               placeholder="Username"
               value={this.state.username}
@@ -85,7 +85,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <textarea
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               rows="8"
               placeholder="Short bio about you"
               value={this.state.bio}
@@ -95,7 +95,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="email"
               placeholder="Email"
               value={this.state.email}
@@ -104,13 +104,13 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="password"
               placeholder="New Password"
               value={this.state.password}
               onChange={this.updateState('password')} />
           </fieldset>
-          
+
           <button
             className="btn btn-lg btn-primary pull-xs-right"
             type="submit"
@@ -155,8 +155,8 @@ class Settings extends React.Component {
               <hr />
 
               <button
-                  className="btn btn-outline-danger"
-                  onClick={this.props.onClickLogout}>
+                className="btn btn-outline-danger"
+                onClick={this.props.onClickLogout}>
                 Or click here to logout.
               </button>
 
