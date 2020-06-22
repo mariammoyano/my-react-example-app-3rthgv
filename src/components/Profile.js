@@ -7,8 +7,7 @@ import {
   FOLLOW_USER,
   UNFOLLOW_USER,
   PROFILE_PAGE_LOADED,
-  PROFILE_PAGE_UNLOADED,
-  SET_PAGE
+  PROFILE_PAGE_UNLOADED
 } from '../constants/actionTypes';
 
 const EditProfileSettings = props => {
@@ -64,7 +63,6 @@ const mapDispatchToProps = dispatch => ({
     payload: agent.Profile.follow(username)
   }),
   onLoad: payload => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
-  onSetPage: (page, payload) => dispatch({ type: SET_PAGE, page, payload }),
   onUnfollow: username => dispatch({
     type: UNFOLLOW_USER,
     payload: agent.Profile.unfollow(username)
@@ -106,11 +104,6 @@ class Profile extends React.Component {
     );
   }
 
-  onSetPage(page) {
-    const promise = agent.Articles.byAuthor(this.props.profile.username, page);
-    this.props.onSetPage(page, promise);
-  }
-
   render() {
     const profile = this.props.profile;
     if (!profile) {
@@ -119,8 +112,6 @@ class Profile extends React.Component {
 
     const isUser = this.props.currentUser &&
       this.props.profile.username === this.props.currentUser.username;
-
-    const onSetPage = page => this.onSetPage(page)
 
     return (
       <div className="profile-page">
@@ -157,10 +148,10 @@ class Profile extends React.Component {
               </div>
 
               <ArticleList
+                pager={this.props.pager}
                 articles={this.props.articles}
                 articlesCount={this.props.articlesCount}
-                currentPage={this.props.currentPage}
-                onSetPage={onSetPage} />
+                state={this.props.currentPage} />
             </div>
 
           </div>
