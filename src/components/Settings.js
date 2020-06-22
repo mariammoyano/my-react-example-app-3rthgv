@@ -1,7 +1,12 @@
 import ListErrors from './ListErrors';
 import React from 'react';
-import agent from '../agent'
+import agent from '../agent';
 import { connect } from 'react-redux';
+import {
+  SETTINGS_SAVED,
+  SETTINGS_PAGE_UNLOADED,
+  LOGOUT
+} from '../constants/actionTypes';
 
 class SettingsForm extends React.Component {
   constructor() {
@@ -32,7 +37,7 @@ class SettingsForm extends React.Component {
       this.props.onSubmitForm(user);
     };
   }
-  
+
   componentWillMount() {
     if (this.props.currentUser) {
       Object.assign(this.state, {
@@ -40,7 +45,7 @@ class SettingsForm extends React.Component {
         username: this.props.currentUser.username,
         bio: this.props.currentUser.bio,
         email: this.props.currentUser.email
-      });      
+      });
     }
   }
 
@@ -62,7 +67,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control"            
+              className="form-control"
               type="text"
               placeholder="URL of profile picture"
               value={this.state.image}
@@ -71,7 +76,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="text"
               placeholder="Username"
               value={this.state.username}
@@ -80,7 +85,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <textarea
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               rows="8"
               placeholder="Short bio about you"
               value={this.state.bio}
@@ -90,7 +95,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="email"
               placeholder="Email"
               value={this.state.email}
@@ -99,13 +104,13 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"            
+              className="form-control form-control-lg"
               type="password"
               placeholder="New Password"
               value={this.state.password}
               onChange={this.updateState('password')} />
           </fieldset>
-          
+
           <button
             className="btn btn-lg btn-primary pull-xs-right"
             type="submit"
@@ -125,10 +130,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClickLogout: () => dispatch({ type: 'LOGOUT' }),
+  onClickLogout: () => dispatch({ type: LOGOUT }),
   onSubmitForm: user =>
-    dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) }),
-  onUnload: () => dispatch({ type: 'SETTINGS_PAGE_UNLOADED' })
+    dispatch({ type: SETTINGS_SAVED, payload: agent.Auth.save(user) }),
+  onUnload: () => dispatch({ type: SETTINGS_PAGE_UNLOADED })
 });
 
 class Settings extends React.Component {
@@ -150,8 +155,8 @@ class Settings extends React.Component {
               <hr />
 
               <button
-                  className="btn btn-outline-danger"
-                  onClick={this.props.onClickLogout}>
+                className="btn btn-outline-danger"
+                onClick={this.props.onClickLogout}>
                 Or click here to logout.
               </button>
 

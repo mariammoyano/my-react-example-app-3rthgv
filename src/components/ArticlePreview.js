@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import agent from '../agent';
+import { connect } from 'react-redux';
+import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
   favorite: slug => dispatch({
-    type: 'ARTICLE_FAVORITED',
+    type: ARTICLE_FAVORITED,
     payload: agent.Articles.favorite(slug)
   }),
   unfavorite: slug => dispatch({
-    type: 'ARTICLE_UNFAVORITED',
+    type: ARTICLE_UNFAVORITED,
     payload: agent.Articles.unfavorite(slug)
   })
 });
@@ -37,7 +38,7 @@ const ArticlePreview = props => {
         </Link>
 
         <div className="info">
-          <Link className="author"  to={`/@${article.author.username}`}>
+          <Link className="author" to={`/@${article.author.username}`}>
             {article.author.username}
           </Link>
           <span className="date">
@@ -46,12 +47,12 @@ const ArticlePreview = props => {
         </div>
 
         <div className="pull-xs-right">
-        <button className={favoriteButtonClass} onClick={handleClick}>
+          <button className={favoriteButtonClass} onClick={handleClick}>
             <i className="ion-heart"></i> {article.favoritesCount}
           </button>
         </div>
       </div>
-      
+
       <Link to={`/article/${article.slug}`} className="preview-link">
         <h1>{article.title}</h1>
         <p>{article.description}</p>
@@ -68,6 +69,6 @@ const ArticlePreview = props => {
       </Link>
     </div>
   );
-};
+}
 
 export default connect(() => ({}), mapDispatchToProps)(ArticlePreview);

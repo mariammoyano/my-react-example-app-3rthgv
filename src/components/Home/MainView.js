@@ -2,6 +2,7 @@ import ArticleList from '../ArticleList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
+import { CHANGE_TAB, SET_PAGE } from '../../constants/actionTypes';
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -18,7 +19,7 @@ const YourFeedTab = props => {
           Your Feed
         </a>
       </li>
-    );    
+    );
   }
   return null;
 };
@@ -61,11 +62,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSetPage: (tab, p) => dispatch({
-    type: 'SET_PAGE',
+    type: SET_PAGE,
     page: p,
     payload: tab === 'feed' ? agent.Articles.feed(p) : agent.Articles.all(p)
   }),
-  onTabClick: (tab, payload) => dispatch({ type: 'CHANGE_TAB', tab, payload })
+  onTabClick: (tab, payload) => dispatch({ type: CHANGE_TAB, tab, payload })
 });
 
 const MainView = props => {

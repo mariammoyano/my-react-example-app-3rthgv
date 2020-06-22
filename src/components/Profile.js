@@ -1,14 +1,21 @@
 import ArticleList from './ArticleList';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {
+  FOLLOW_USER,
+  UNFOLLOW_USER,
+  PROFILE_PAGE_LOADED,
+  PROFILE_PAGE_UNLOADED,
+  SET_PAGE
+} from '../constants/actionTypes';
 
 const EditProfileSettings = props => {
   if (props.isUser) {
     return (
       <Link
-        to="settings"
+        to="/settings"
         className="btn btn-sm btn-outline-secondary action-btn">
         <i className="ion-gear-a"></i> Edit Profile Settings
       </Link>
@@ -48,25 +55,25 @@ const FollowUserButton = props => {
 const mapStateToProps = state => ({
   ...state.articleList,
   currentUser: state.common.currentUser,
-  profile: state.profile  
+  profile: state.profile
 });
 
 const mapDispatchToProps = dispatch => ({
   onFollow: username => dispatch({
-    type: 'FOLLOW_USER',
+    type: FOLLOW_USER,
     payload: agent.Profile.follow(username)
   }),
-  onLoad: payload => dispatch({ type: 'PROFILE_PAGE_LOADED', payload }),
-  onSetPage: (page, payload) => dispatch({ type: 'SET_PAGE', page, payload }),
+  onLoad: payload => dispatch({ type: PROFILE_PAGE_LOADED, payload }),
+  onSetPage: (page, payload) => dispatch({ type: SET_PAGE, page, payload }),
   onUnfollow: username => dispatch({
-    type: 'UNFOLLOW_USER',
+    type: UNFOLLOW_USER,
     payload: agent.Profile.unfollow(username)
   }),
-  onUnload: () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' })  
+  onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED })
 });
 
 class Profile extends React.Component {
-  componentWillMount() {    
+  componentWillMount() {
     this.props.onLoad(Promise.all([
       agent.Profile.get(this.props.match.params.username),
       agent.Articles.byAuthor(this.props.match.params.username)
@@ -123,17 +130,17 @@ class Profile extends React.Component {
             <div className="row">
               <div className="col-xs-12 col-md-10 offset-md-1">
 
-                <img src={profile.image} className="user-img" />
+                <img src={profile.image} className="user-img" alt={profile.username} />
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
 
                 <EditProfileSettings isUser={isUser} />
-                <FollowUserButton 
+                <FollowUserButton
                   isUser={isUser}
                   user={profile}
                   follow={this.props.onFollow}
                   unfollow={this.props.onUnfollow}
-                />
+                  />
 
               </div>
             </div>
@@ -149,11 +156,11 @@ class Profile extends React.Component {
                 {this.renderTabs()}
               </div>
 
-            <ArticleList
-              articles={this.props.articles}
-              articlesCount={this.props.articlesCount}
-              currentPage={this.props.currentPage}
-              onSetPage={onSetPage} />
+              <ArticleList
+                articles={this.props.articles}
+                articlesCount={this.props.articlesCount}
+                currentPage={this.props.currentPage}
+                onSetPage={onSetPage} />
             </div>
 
           </div>
