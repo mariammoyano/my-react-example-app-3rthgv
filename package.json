@@ -13,8 +13,11 @@
     "react-redux": "^4.4.5",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "3.4.1",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
     "superagent": "^2.3.0",
     "superagent-promise": "^1.1.0"
   },

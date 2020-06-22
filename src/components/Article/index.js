@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ARTICLE_PAGE_UNLOADED })
 });
 
- class Article extends React.Component {
+class Article extends React.Component {
   componentWillMount() {
     const articleId = this.props.match.params.id;    
     this.props.onLoad(Promise.all([
@@ -35,7 +35,8 @@ const mapDispatchToProps = dispatch => ({
     if (!this.props.article) {
       return null;
     }
-    const markup = { __html: marked(this.props.article.body) };
+
+    const markup = { __html: marked(this.props.article.body, { sanitize: true }) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
     return (
