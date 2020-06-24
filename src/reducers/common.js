@@ -19,7 +19,8 @@ import {
 
 const defaultState = {
   appName: 'Conduit',
-  token: null
+  token: null,
+  viewChangeCounter: 0
 };
 
 export default (state = defaultState, action) => {
@@ -54,6 +55,15 @@ export default (state = defaultState, action) => {
       };
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };
+    case ARTICLE_PAGE_UNLOADED:
+    case EDITOR_PAGE_UNLOADED:
+    case HOME_PAGE_UNLOADED:
+    case PROFILE_PAGE_UNLOADED:
+    case PROFILE_FAVORITES_PAGE_UNLOADED:
+    case SETTINGS_PAGE_UNLOADED:
+    case LOGIN_PAGE_UNLOADED:
+    case REGISTER_PAGE_UNLOADED:
+      return { ...state, viewChangeCounter: state.viewChangeCounter + 1 };
     default:
       return state;
   }
